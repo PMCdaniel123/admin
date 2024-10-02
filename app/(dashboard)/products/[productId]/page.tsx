@@ -5,7 +5,7 @@ import ProductForm from "@/components/products/ProductForm";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
-const page = ({ params }: { params: { productId: string } }) => {
+const ProductDetail = ({ params }: { params: { productId: string } }) => {
   const [loading, setLoading] = useState(true);
   const [productDetail, setProductDetail] = useState<ProductType | null>(null);
 
@@ -34,4 +34,4 @@ const page = ({ params }: { params: { productId: string } }) => {
   return loading ? <Loader /> : <ProductForm initialData={productDetail} />;
 };
 
-export default page;
+export default ProductDetail;
