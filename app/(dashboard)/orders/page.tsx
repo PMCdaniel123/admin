@@ -37,6 +37,6 @@ const Orders = () => {
   );
 };
 
-export default Orders;
-
 export const dynamic = "force-dynamic";
+
+export default Orders;

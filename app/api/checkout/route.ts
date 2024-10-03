@@ -60,5 +60,3 @@ export async function POST(req: NextRequest) {
     return new NextResponse("Unauthorized", { status: 403 });
   }
 }
-
-export const dynamic = "force-dynamic";
