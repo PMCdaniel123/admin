@@ -26,7 +26,22 @@ const MultiText: React.FC<MultiTextProps> = ({
   };
 
   return (
-    <div>
+    <div className="flex flex-col">
+      <div className="flex gap-1 flex-wrap">
+        {value.map((item, index) => (
+          <Badge key={index} className="bg-tertiary text-white mb-4">
+            {item}
+            <button
+              type="button"
+              className="ml-1 p-[2px] rounded-full outline-none"
+              onClick={() => onRemove(item)}
+            >
+              <X className="h-3 w-3" />
+            </button>
+          </Badge>
+        ))}
+      </div>
+
       <Input
         placeholder={placeholder}
         value={inputValue}
@@ -38,21 +53,6 @@ const MultiText: React.FC<MultiTextProps> = ({
           }
         }}
       />
-
-      <div className="flex gap-1 flex-wrap mt-4">
-        {value.map((item, index) => (
-          <Badge key={index} className="bg-grey-1 text-white">
-            {item}
-            <button
-              type="button"
-              className="ml-1 p-[2px] rounded-full outline-none hover:bg-red-1"
-              onClick={() => onRemove(item)}
-            >
-              <X className="h-3 w-3" />
-            </button>
-          </Badge>
-        ))}
-      </div>
     </div>
   );
 };

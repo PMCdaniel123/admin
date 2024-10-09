@@ -15,44 +15,46 @@ export default async function Home() {
   const graphData = await getSalesPerMonth();
 
   return (
-    <div className="px-8 py-10">
-      <p className="text-heading2-bold">Dashboard</p>
-      <Separator className="bg-grey-1 my-5" />
+    <div className="px-10 py-5 bg-[#f9f9f9] min-h-screen">
+      <div className="bg-white w-full flex items-center justify-between p-6 rounded-lg shadow-xl">
+        <p className="text-heading2-bold text-primary">Dashboard</p>
+      </div>
+      <Separator className="bg-primary mt-8 mb-10" />
 
       <div className="grid grid-cols-2 md:grid-cols-3 gap-10">
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between">
+        <Card className="bg-white shadow-xl border border-tertiary">
+          <CardHeader className="flex flex-row items-center justify-between text-primary">
             <CardTitle>Total Revenue</CardTitle>
             <CircleDollarSign className="max-sm:hidden" />
           </CardHeader>
           <CardContent>
-            <p className="text-body-bold">${totalRevenue}</p>
+            <p className="text-body-bold text-secondary">${totalRevenue}</p>
           </CardContent>
         </Card>
 
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between">
+        <Card className="bg-white shadow-xl border border-tertiary">
+          <CardHeader className="flex flex-row items-center justify-between text-primary">
             <CardTitle>Total Orders</CardTitle>
             <ShoppingBag className="max-sm:hidden" />
           </CardHeader>
           <CardContent>
-            <p className="text-body-bold">{totalOrders}</p>
+            <p className="text-body-bold text-secondary">{totalOrders}</p>
           </CardContent>
         </Card>
 
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between">
+        <Card className="bg-white shadow-xl border border-tertiary">
+          <CardHeader className="flex flex-row items-center justify-between text-primary">
             <CardTitle>Total Customers</CardTitle>
             <UserRound className="max-sm:hidden" />
           </CardHeader>
           <CardContent>
-            <p className="text-body-bold">{totalCustomer}</p>
+            <p className="text-body-bold text-secondary">{totalCustomer}</p>
           </CardContent>
         </Card>
       </div>
-      
-      <Card className="mt-10">
-        <CardHeader className="flex flex-row items-center justify-between">
+
+      <Card className="mt-10 bg-white shadow-xl border border-tertiary">
+        <CardHeader className="flex flex-row items-center justify-between text-primary">
           <CardTitle>Sales Chart ($)</CardTitle>
         </CardHeader>
         <CardContent>

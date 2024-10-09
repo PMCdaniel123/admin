@@ -42,15 +42,15 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
   );
 
   return (
-    <Command className="overflow-visible bg-white">
-      <div className="flex gap-1 flex-wrap border rounded-md">
-        <div>
+    <Command className="overflow-visible bg-white h-fit">
+      <div className="flex flex-col flex-wrap border rounded-md">
+        <div className="flex gap-1 flex-wrap p-1">
           {selected.map((collection) => (
-            <Badge key={collection._id}>
+            <Badge key={collection._id} className="bg-tertiary text-white">
               {collection.title}
               <button
                 type="button"
-                className="ml-1 hover:text-red-1"
+                className="ml-1"
                 onClick={() => onRemove(collection._id)}
               >
                 <X className="w-3 h-3" />
@@ -64,10 +64,11 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
           onValueChange={setInputValue}
           onBlur={() => setOpen(false)}
           onFocus={() => setOpen(true)}
+          className="w-full"
         />
       </div>
-      <div className="relative mt-2">
-        {open && (
+      {open && (
+        <div className="relative mt-2">
           <CommandGroup className="absolute w-full z-10 top-0 overflow-auto border rounded-md shadow-md">
             {selectables.map((collection) => (
               <CommandItem
@@ -83,8 +84,8 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
               </CommandItem>
             ))}
           </CommandGroup>
-        )}
-      </div>
+        </div>
+      )}
     </Command>
   );
 };

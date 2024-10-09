@@ -13,8 +13,8 @@ const TopBar = () => {
   const pathName = usePathname();
 
   return (
-    <div className="sticky top-0 z-20 w-full flex justify-between items-center px-8 py-4 bg-blue-2 shadow-lg lg:hidden">
-      <Image src={"/logo.png"} alt="log" width={150} height={70} />
+    <div className="sticky top-0 z-20 w-full flex justify-between items-center px-8 bg-white shadow-lg lg:hidden">
+      <Image src={"/logo.png"} alt="log" width={100} height={100} />
 
       <div className="flex gap-8 max-md:hidden">
         {navLinks.map((link) => (
@@ -22,7 +22,7 @@ const TopBar = () => {
             href={link.url}
             key={link.label}
             className={`flex gap-4 text-body-medium ${
-              pathName === link.url ? "text-blue-1" : ""
+              pathName === link.url ? "text-primary" : "text-tertiary"
             }`}
           >
             <p>{link.label}</p>
@@ -32,7 +32,7 @@ const TopBar = () => {
 
       <div className="relative flex gap-4 text-center">
         <MenuIcon
-          className="cursor-pointer md:hidden"
+          className="cursor-pointer md:hidden text-primary"
           onClick={() => setDropDownMenu(!dropdownMenu)}
         />
         {dropdownMenu && (
@@ -41,7 +41,10 @@ const TopBar = () => {
               <Link
                 href={link.url}
                 key={link.label}
-                className="flex gap-4 text-body-medium"
+                className={`flex gap-4 text-body-medium hover:bg-quaternary w-full hover:text-primary ${
+                  pathName === link.url ? "text-primary" : "text-tertiary"
+                }`}
+                onClick={() => setDropDownMenu(false)}
               >
                 {link.icon} <p>{link.label}</p>
               </Link>

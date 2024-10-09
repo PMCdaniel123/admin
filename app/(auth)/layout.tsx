@@ -4,8 +4,8 @@ import "../globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 
 export const metadata: Metadata = {
-  title: "Borcelle - Admin Auth",
-  description: "Admin dashboard to manage Borcelle's data",
+  title: "Habseligkeit - Admin Auth",
+  description: "Habseligkeit - Admin Auth",
 };
 
 export default function RootLayout({

@@ -7,8 +7,8 @@ import TopBar from "@/components/layout/TopBar";
 import { ToasterProvider } from "@/lib/ToasterProvider";
 
 export const metadata: Metadata = {
-  title: "Borcelle - Admin Dashboard",
-  description: "Admin dashboard to manage Borcelle's data",
+  title: "Habseligkeit - Admin Dashboard",
+  description: "Habseligkeit - Admin Dashboard",
 };
 
 export default function RootLayout({

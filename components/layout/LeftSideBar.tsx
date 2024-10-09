@@ -3,7 +3,6 @@
 import { UserButton } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
-
 import { navLinks } from "@/lib/constant";
 import { usePathname } from "next/navigation";
 
@@ -11,8 +10,8 @@ const LeftSideBar = () => {
   const pathName = usePathname();
 
   return (
-    <div className="h-screen left-0 top-0 sticky p-10 flex flex-col gap-16  bg-blue-2 shadow-xl max-lg:hidden">
-      <Image src={"/logo.png"} alt="log" width={150} height={70} />
+    <div className="h-screen left-0 top-0 sticky px-10 flex flex-col gap-10 bg-quaternary shadow-xl max-lg:hidden">
+      <Image src={"/logo.png"} alt="log" width={200} height={200} />
 
       <div className="flex flex-col gap-12">
         {navLinks.map((link) => (
@@ -20,7 +19,7 @@ const LeftSideBar = () => {
             href={link.url}
             key={link.label}
             className={`flex gap-4 text-body-medium ${
-              pathName === link.url ? "text-blue-1" : ""
+              pathName === link.url ? "text-primary" : "text-tertiary"
             }`}
           >
             {link.icon} <p>{link.label}</p>
@@ -30,7 +29,7 @@ const LeftSideBar = () => {
 
       <div className="flex gap-4 text-body-medium text-center">
         <UserButton />
-        <p>Edit Profile</p>
+        <p className="text-primary">Edit Profile</p>
       </div>
     </div>
   );

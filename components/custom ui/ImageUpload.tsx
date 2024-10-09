@@ -22,11 +22,23 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
     onChange(response.info.secure_url);
   };
 
-  console.log(value);
-
   return (
     <div>
-      <div className="mb-4 flex flex-wrap items-center gap-4">
+      <CldUploadWidget uploadPreset="lg4awzat" onSuccess={onUpload}>
+        {({ open }) => {
+          return (
+            <Button
+              type="button"
+              onClick={() => open()}
+              className="bg-primary text-white"
+            >
+              <Plus className="h-4 w-4 mr-2" /> Upload Image
+            </Button>
+          );
+        }}
+      </CldUploadWidget>
+
+      <div className="mt-4 flex flex-wrap items-center gap-4">
         {value.map((url, index) => (
           <div key={index} className="relative w-[200px] h-[200px]">
             <div className="absolute top-0 right-0 z-10">
@@ -47,19 +59,6 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
           </div>
         ))}
       </div>
-      <CldUploadWidget uploadPreset="lg4awzat" onSuccess={onUpload}>
-        {({ open }) => {
-          return (
-            <Button
-              type="button"
-              onClick={() => open()}
-              className="bg-grey-1 text-white"
-            >
-              <Plus className="h-4 w-4 mr-2" /> Upload Image
-            </Button>
-          );
-        }}
-      </CldUploadWidget>
     </div>
   );
 };

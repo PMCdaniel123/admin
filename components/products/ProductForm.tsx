@@ -115,16 +115,18 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
   return loading ? (
     <Loader />
   ) : (
-    <div className="p-10">
+    <div>
       {initialData ? (
-        <div className="flex items-center justify-between">
-          <p className="text-heading2-bold">Edit Product</p>
+        <div className="bg-white w-full flex flex-col sm:flex-row gap-4 sm:items-center sm:justify-between p-6 rounded-lg shadow-xl">
+          <p className="text-heading2-bold text-primary">Edit Product</p>
           <Delete item="product" id={initialData._id} />
         </div>
       ) : (
-        <p className="text-heading2-bold">Create Product</p>
+        <div className="bg-white w-full flex flex-col sm:flex-row gap-4 sm:items-center sm:justify-between p-6 rounded-lg shadow-xl">
+          <p className="text-heading2-bold text-primary">Create Product</p>
+        </div>
       )}
-      <Separator className="bg-grey-1 mt-4 mb-7" />
+      <Separator className="bg-primary mt-8 mb-8" />
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           <FormField
@@ -182,7 +184,12 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
                 <FormItem>
                   <FormLabel>Price ($)</FormLabel>
                   <FormControl>
-                    <Input type="number" placeholder="Price" {...field} />
+                    <Input
+                      type="number"
+                      placeholder="Price"
+                      {...field}
+                      min={0}
+                    />
                   </FormControl>
                   <FormMessage className="text-red-1" />
                 </FormItem>
@@ -195,7 +202,12 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
                 <FormItem>
                   <FormLabel>Expense ($)</FormLabel>
                   <FormControl>
-                    <Input type="number" placeholder="Expense" {...field} />
+                    <Input
+                      type="number"
+                      placeholder="Expense"
+                      {...field}
+                      min={0}
+                    />
                   </FormControl>
                   <FormMessage className="text-red-1" />
                 </FormItem>
@@ -317,13 +329,13 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
             />
           </div>
 
-          <div className="flex gap-10">
-            <Button type="submit" className="bg-blue-1 text-white">
+          <div className="flex gap-4 items-center justify-end">
+            <Button type="submit" className="bg-primary text-white">
               Submit
             </Button>
             <Button
               type="button"
-              className="bg-blue-1 text-white"
+              className="bg-secondary text-white"
               onClick={() => router.push("/products")}
             >
               Discard

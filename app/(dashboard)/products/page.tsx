@@ -37,17 +37,17 @@ const Product = () => {
   return loading ? (
     <Loader />
   ) : (
-    <div className="px-10 py-5">
-      <div className="flex items-center justify-between">
-        <p className="text-heading2-bold">Products</p>
+    <div className="px-10 py-5 bg-[#f9f9f9] min-h-screen">
+      <div className="bg-white w-full flex flex-col sm:flex-row gap-4 sm:items-center sm:justify-between p-6 rounded-lg shadow-xl">
+        <p className="text-heading2-bold text-primary">Products</p>
         <Button
-          className="bg-blue-1 text-white"
+          className="bg-primary text-white"
           onClick={() => router.push("/products/new")}
         >
           <Plus className="h-4 w-4 mr-2" /> Create Product
         </Button>
       </div>
-      <Separator className="bg-grey-1 my-4" />
+      <Separator className="bg-primary mt-8 mb-4" />
       <DataTable columns={columns} data={products} searchKey="title" />
     </div>
   );

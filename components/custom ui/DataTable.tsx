@@ -49,21 +49,24 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className="py-5">
-      <div className="flex items-center py-4">
+      <div className="flex items-center mb-8">
         <Input
           placeholder="Search..."
           value={(table.getColumn(searchKey)?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
             table.getColumn(searchKey)?.setFilterValue(event.target.value)
           }
-          className="max-w-sm"
+          className="max-w-md px-2 py-5 bg-white border border-tertiary"
         />
       </div>
-      <div className="rounded-md border">
+      <div className="rounded-md border border-tertiary">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id}>
+              <TableRow
+                key={headerGroup.id}
+                className="bg-quaternary text-primary rounded-t-full border-b border-tertiary"
+              >
                 {headerGroup.headers.map((header) => {
                   return (
                     <TableHead key={header.id}>
@@ -79,7 +82,7 @@ export function DataTable<TData, TValue>({
               </TableRow>
             ))}
           </TableHeader>
-          <TableBody>
+          <TableBody className="bg-white text-primary">
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow
@@ -115,6 +118,7 @@ export function DataTable<TData, TValue>({
           size="sm"
           onClick={() => table.previousPage()}
           disabled={!table.getCanPreviousPage()}
+          className="text-primary bg-white border border-tertiary"
         >
           Previous
         </Button>
@@ -123,6 +127,7 @@ export function DataTable<TData, TValue>({
           size="sm"
           onClick={() => table.nextPage()}
           disabled={!table.getCanNextPage()}
+          className="text-primary bg-white border border-tertiary"
         >
           Next
         </Button>

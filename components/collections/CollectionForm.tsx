@@ -20,6 +20,7 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import Delete from "../custom ui/Delete";
+import Loader from "../custom ui/Loader";
 
 const formSchema = z.object({
   title: z.string().min(2).max(20),
@@ -34,8 +35,6 @@ interface CollectionFormProps {
 const CollectionForm: React.FC<CollectionFormProps> = ({ initialData }) => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
-
-  console.log(loading);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -72,17 +71,21 @@ const CollectionForm: React.FC<CollectionFormProps> = ({ initialData }) => {
     }
   };
 
-  return (
-    <div className="p-10">
+  return loading ? (
+    <Loader />
+  ) : (
+    <div>
       {initialData ? (
-        <div className="flex items-center justify-between">
-          <p className="text-heading2-bold">Edit Collection</p>
+        <div className="bg-white w-full flex flex-col sm:flex-row gap-4 sm:items-center sm:justify-between p-6 rounded-lg shadow-xl">
+          <p className="text-heading2-bold text-primary">Edit Collection</p>
           <Delete item="collection" id={initialData._id} />
         </div>
       ) : (
-        <p className="text-heading2-bold">Create Collection</p>
+        <div className="bg-white w-full flex flex-col sm:flex-row gap-4 sm:items-center sm:justify-between p-6 rounded-lg shadow-xl">
+          <p className="text-heading2-bold text-primary">Create Collection</p>
+        </div>
       )}
-      <Separator className="bg-grey-1 mt-4 mb-7" />
+      <Separator className="bg-primary mt-8 mb-8" />
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           <FormField
@@ -90,7 +93,9 @@ const CollectionForm: React.FC<CollectionFormProps> = ({ initialData }) => {
             name="title"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Title</FormLabel>
+                <FormLabel className="text-primary text-base-bold">
+                  Title
+                </FormLabel>
                 <FormControl>
                   <Input placeholder="Title" {...field} />
                 </FormControl>
@@ -103,7 +108,9 @@ const CollectionForm: React.FC<CollectionFormProps> = ({ initialData }) => {
             name="description"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Description</FormLabel>
+                <FormLabel className="text-primary text-base-bold">
+                  Description
+                </FormLabel>
                 <FormControl>
                   <Textarea placeholder="Description" {...field} rows={5} />
                 </FormControl>
@@ -116,7 +123,9 @@ const CollectionForm: React.FC<CollectionFormProps> = ({ initialData }) => {
             name="image"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Image</FormLabel>
+                <FormLabel className="text-primary text-base-bold">
+                  Image
+                </FormLabel>
                 <FormControl>
                   <ImageUpload
                     value={field.value ? [field.value] : []}
@@ -128,13 +137,13 @@ const CollectionForm: React.FC<CollectionFormProps> = ({ initialData }) => {
               </FormItem>
             )}
           />
-          <div className="flex gap-10">
-            <Button type="submit" className="bg-blue-1 text-white">
+          <div className="flex gap-4 items-center justify-end">
+            <Button type="submit" className="bg-primary text-white">
               Submit
             </Button>
             <Button
               type="button"
-              className="bg-blue-1 text-white"
+              className="bg-secondary text-white"
               onClick={() => router.push("/collections")}
             >
               Discard
