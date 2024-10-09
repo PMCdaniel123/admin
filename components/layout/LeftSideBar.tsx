@@ -27,7 +27,7 @@ const LeftSideBar = () => {
         ))}
       </div>
 
-      <div className="flex gap-4 text-body-medium text-center">
+      <div className="flex gap-4 text-body-medium text-center items-center">
         <UserButton />
         <p className="text-primary">Edit Profile</p>
       </div>
