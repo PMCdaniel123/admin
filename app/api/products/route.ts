@@ -73,7 +73,12 @@ export const GET = async () => {
       .sort({ createdAt: "desc" })
       .populate({ path: "collections", model: Collection });
 
-    return NextResponse.json(products, { status: 200 });
+    const response = NextResponse.json(products, { status: 200 });
+    response.headers.set("Access-Control-Allow-Origin", "*");
+    response.headers.set("Access-Control-Allow-Methods", "GET, OPTIONS");
+    response.headers.set("Access-Control-Allow-Headers", "Content-Type");
+
+    return response;
   } catch (error) {
     console.log("PRODUCTS_GET", error);
     return new NextResponse("Internal Server Error", { status: 500 });
