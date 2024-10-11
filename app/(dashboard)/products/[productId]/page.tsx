@@ -9,29 +9,33 @@ const ProductDetail = ({ params }: { params: { productId: string } }) => {
   const [loading, setLoading] = useState(true);
   const [productDetail, setProductDetail] = useState<ProductType | null>(null);
 
-  const getProductDetail = async () => {
-    try {
-      console.log(params.productId);
-
-      const res = await fetch(`/api/products/${params.productId}`, {
-        method: "GET",
-      });
-
-      const data = await res.json();
-
-      setProductDetail(data);
-      setLoading(false);
-    } catch (error) {
-      toast.error("Something went wrong! Please try again.");
-      console.log("[ProductId_GET]", error);
-    }
-  };
-
   useEffect(() => {
-    getProductDetail();
-  }, []);
+    const getProductDetail = async () => {
+      try {
+        const res = await fetch(`/api/products/${params.productId}`, {
+          method: "GET",
+        });
 
-  return loading ? <Loader /> : <ProductForm initialData={productDetail} />;
+        const data = await res.json();
+
+        setProductDetail(data);
+        setLoading(false);
+      } catch (error) {
+        toast.error("Something went wrong! Please try again.");
+        console.log("[ProductId_GET]", error);
+      }
+    };
+
+    getProductDetail();
+  }, [params.productId]);
+
+  return loading ? (
+    <Loader />
+  ) : (
+    <div className="px-10 py-5 bg-[#f9f9f9] min-h-screen">
+      <ProductForm initialData={productDetail} />;
+    </div>
+  );
 };
 
 export default ProductDetail;

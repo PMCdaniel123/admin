@@ -13,7 +13,7 @@ const OrderDetail = async ({ params }: { params: { orderId: string } }) => {
     
 
   return (
-    <div className="flex flex-col p-10 gap-5">
+    <div className="flex flex-col p-10 gap-5 text-primary">
       <p className="text-base-bold">
         Order ID: <span className="text-base-medium">{orderDetail._id}</span>
       </p>
