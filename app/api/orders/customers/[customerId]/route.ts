@@ -17,7 +17,12 @@ export const GET = async (
       model: Product,
     });
 
-    return NextResponse.json(orders, { status: 200 });
+    const response = NextResponse.json(orders, { status: 200 });
+    response.headers.set("Access-Control-Allow-Origin", "*");
+    response.headers.set("Access-Control-Allow-Methods", "GET, OPTIONS");
+    response.headers.set("Access-Control-Allow-Headers", "Content-Type");
+
+    return response;
   } catch (error) {
     console.log("CUSTOMERID_GET", error);
     return new NextResponse("Internal Server Error", { status: 500 });

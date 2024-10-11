@@ -23,14 +23,12 @@ export const GET = async (
       );
     }
 
-    return new NextResponse(JSON.stringify(product), { 
-      status: 200,
-      headers: {
-        "Access-Control-Allow-Origin": `${process.env.ECOMMERCE_STORE_URL}`,
-        "Access-Control-Allow-Methods": "GET",
-        "Access-Control-Allow-Headers": "Content-Type",
-      }
-    });
+    const response = NextResponse.json(product, { status: 200 });
+    response.headers.set("Access-Control-Allow-Origin", "*");
+    response.headers.set("Access-Control-Allow-Methods", "GET, OPTIONS");
+    response.headers.set("Access-Control-Allow-Headers", "Content-Type");
+
+    return response;
   } catch (error) {
     console.log("ProductID_GET", error);
     return new NextResponse("Internal Server Error", { status: 500 });

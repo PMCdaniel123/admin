@@ -23,7 +23,12 @@ export const GET = async (
       );
     }
 
-    return NextResponse.json(collection, { status: 200 });
+    const response = NextResponse.json(collection, { status: 200 });
+    response.headers.set("Access-Control-Allow-Origin", "*");
+    response.headers.set("Access-Control-Allow-Methods", "GET, OPTIONS");
+    response.headers.set("Access-Control-Allow-Headers", "Content-Type");
+
+    return response;
   } catch (error) {
     console.log("CollectionID_GET", error);
     return new NextResponse("Internal Server Error", { status: 500 });
